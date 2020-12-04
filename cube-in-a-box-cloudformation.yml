@@ -19,17 +19,17 @@ Parameters:
       r5a.xlarge, r5a.2xlarge, r5a.4xlarge,]
     ConstraintDescription: must be a valid EC2 instance type.
   ExtentToIndex:
-    Description: An extent to index for use in the Cube in a Box
+    Description: An extent to index for use in the Cube in a Box (Lat/Lng)
     Type: String
-    Default: '25,20,35,30'
+    Default: '9,27,11,29'
   SecretPassword:
     Description: Password to open up the Jupyter notebook
     Type: String
-    Default: 'secretpassword'
+    Default: 'secret_odc_password'
   EC2InstanceName:
     Description: The name of the Cube in a Box EC2 instance
     Type: String
-    Default: 'Cube-in-a-Box'
+    Default: 'Cube-in-a-Box-Gispo'
   SSHLocation:
     Description: The IP address range that can be used to access the Cube in a Box
     Type: String
@@ -41,10 +41,12 @@ Parameters:
   Region:
     Description: The AWS region to deploy in
     Type: String
-    Default: us-west-2
-    AllowedValues: [us-west-2, ap-southeast-2]
+    Default: eu-central-1
+    AllowedValues: [us-west-2, ap-southeast-2, eu-central-1]
 Mappings:
   RegionMap:
+    eu-central-1:
+      HVM64: ami-0d33e81ffd9511552
     us-west-2:
       "HVM64": "ami-04ef7170e45541f07"
     ap-southeast-2:
