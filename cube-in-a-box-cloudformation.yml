@@ -90,7 +90,7 @@ Resources:
           mv cube-in-a-box-master /opt/odc
           # We need to remove some local vars. This is a bit of a hack...
           sed --in-place 's/secretpassword/${SecretPassword}/g' /opt/odc/docker-compose.yml
-          sed --in-place --expression "s@secretkey@${AWSACCESSKEYID}@g" /opt/odc/docker-compose.yml
+          sed --in-place --expression "s@accesskey@${AWSACCESSKEYID}@g" /opt/odc/docker-compose.yml
           sed --in-place --expression "s@secretkey@${AWSSECRETACCESSKEY}@g" /opt/odc/docker-compose.yml
           # We need write access in these places
           chmod -R 777 /opt/odc/notebooks
