@@ -7,12 +7,14 @@ Parameters:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: AWS::EC2::KeyPair::KeyName
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
-  AWS_ACCESS_KEY_ID:
+  AWSACCESSKEYID:
     Description: AWS access key id
-    type: String
-  AWS_SECRET_ACCESS_KEY:
+    Type: String
+    Default: 'accesskey'
+  AWSSECRETACCESSKEY:
     Description: AWS secret access key
-    type: String
+    Type: String
+    Default: 'secretkey'
   InstanceType:
     Description: WebServer EC2 instance type
     Type: String
@@ -81,15 +83,15 @@ Resources:
           apt-get update
           apt-get install -y docker-ce python3-pip unzip wget
           pip3 install docker-compose
-          sudo usermod -aG docker $USER
+          sudo usermod -aG docker ubuntu
           # Get our code
           wget https://github.com/GispoCoding/cube-in-a-box/archive/master.zip -O /tmp/archive.zip
           unzip /tmp/archive.zip
           mv cube-in-a-box-master /opt/odc
           # We need to remove some local vars. This is a bit of a hack...
           sed --in-place 's/secretpassword/${SecretPassword}/g' /opt/odc/docker-compose.yml
-          sed --in-place 's/accesskey/${AWS_ACCESS_KEY_ID}/g' /opt/odc/docker-compose.yml
-          sed --in-place 's/secretkey/${AWS_SECRET_ACCESS_KEY}/g' /opt/odc/docker-compose.yml
+          sed --in-place 's/accesskey/${AWSACCESSKEYID}/g' /opt/odc/docker-compose.yml
+          sed --in-place 's/secretkey/${AWSSECRETACCESSKEY}/g' /opt/odc/docker-compose.yml
           # We need write access in these places
           chmod -R 777 /opt/odc/notebooks
           cd /opt/odc
