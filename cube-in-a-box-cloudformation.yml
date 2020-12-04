@@ -75,6 +75,7 @@ Resources:
           apt-get update
           apt-get install -y docker-ce python3-pip unzip wget
           pip3 install docker-compose
+          sudo usermod -aG docker $USER
           # Get our code
           wget https://github.com/GispoCoding/cube-in-a-box/archive/master.zip -O /tmp/archive.zip
           unzip /tmp/archive.zip
