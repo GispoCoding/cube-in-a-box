@@ -91,6 +91,7 @@ def generate_eo3_dataset_doc(bucket_name: str, key: str, data: ElementTree) -> d
     crs_code = data.find("./*/Tile_Geocoding/HORIZONTAL_CS_CODE").text.lower()
     sun_zenith = float(data.find("./*/Tile_Angles/Mean_Sun_Angle/ZENITH_ANGLE").text)
     sun_azimuth = float(data.find("./*/Tile_Angles/Mean_Sun_Angle/AZIMUTH_ANGLE").text)
+    cloudy_pixel_percentage = float(data.find("./*/Image_Content_QI/CLOUDY_PIXEL_PERCENTAGE").text)
     grids = read_grid_metadata(data)
 
     l1c_measurements = ["B01_60m", "B02_10m", "B03_10m", "B04_10m", "B05_20m",
@@ -128,6 +129,7 @@ def generate_eo3_dataset_doc(bucket_name: str, key: str, data: ElementTree) -> d
             "odc:region_code": region_code,
             "mean_sun_zenith": sun_zenith,
             "mean_sun_azimuth": sun_azimuth,
+            "cloudy_pixel_percentage": cloudy_pixel_percentage,
         },
         "lineage": {},
     }
