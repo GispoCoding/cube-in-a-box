@@ -130,6 +130,7 @@ def generate_eo3_dataset_doc(bucket_name: str, key: str, data: ElementTree) -> d
             "mean_sun_zenith": sun_zenith,
             "mean_sun_azimuth": sun_azimuth,
             "cloudy_pixel_percentage": cloudy_pixel_percentage,
+            "s3_key": "/".join(Path(key).parts[:-1]),
         },
         "lineage": {},
     }
