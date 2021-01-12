@@ -1,12 +1,14 @@
 import numpy as np
 import gdal
 gdal.UseExceptions()
-from typing import List
 
 
-def array_to_geotiff_multiband(file_name: str, data: tuple[np.ndarray],
-                               geo_transform: tuple, projection: str,
-                               nodata_val=0, data_type=gdal.GDT_Float32):
+def array_to_geotiff_multiband(file_name: str,
+                               data: list[np.ndarray],
+                               geo_transform: tuple,
+                               projection: str,
+                               nodata_val=0,
+                               data_type=gdal.GDT_Float32):
     """ Create a multiband GeoTIFF file with data from an array.
     file_name : output geotiff file path including extension
     data : list of numpy arrays
