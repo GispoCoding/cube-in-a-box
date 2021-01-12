@@ -1,6 +1,6 @@
 from os import environ
 import logging
-from typing import Union
+from typing import Union, List
 from pathlib import Path
 import datacube
 from datacube.model import Dataset as ODCDataset
@@ -68,8 +68,8 @@ def process_dataset(dataset: ODCDataset) -> (np.ndarray, np.ndarray):
 
 
 def load_datasets(
-        datasets: Union[list[ODCDataset], ODCDataset],
-        measurements: list[str] = None,
+        datasets: Union[List[ODCDataset], ODCDataset],
+        measurements: List[str] = None,
         app_name: str = "s2cloudless") -> Dataset:
     """ Loads a xarray.Dataset datacube from an ODC dataset """
     if not isinstance(datasets, list):
@@ -126,7 +126,7 @@ def generate_cloud_shadow_masks(nir_array: np.ndarray,
 
 def write_to_tif(
         dataset: ODCDataset,
-        data: list[np.ndarray],
+        data: List[np.ndarray],
         data_type: int = gdal.GDT_Byte,
         file_suffix: str = "s2cloudless"):
     """ Write a set of ndarrays to .tif """

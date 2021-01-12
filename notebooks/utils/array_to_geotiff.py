@@ -1,11 +1,12 @@
+from typing import List, Tuple
 import numpy as np
 import gdal
 gdal.UseExceptions()
 
 
 def array_to_geotiff_multiband(file_name: str,
-                               data: list[np.ndarray],
-                               geo_transform: tuple,
+                               data: List[np.ndarray],
+                               geo_transform: Tuple,
                                projection: str,
                                nodata_val=0,
                                data_type=gdal.GDT_Float32):
